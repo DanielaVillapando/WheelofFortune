@@ -16,11 +16,7 @@ const pokemonArray = {
 // type = Object.values(pokemonArray)[randomNumber]["type"]
 // hint = Object.values(pokemonArray)[randomNumber]["hint"]
 
-// Possible Points Per Letter
-// const pointArray = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 500, 600, 700, 2000, 200, -1000]
-// const pointArray = [500, -1000]
-
-const wheelvalue = [500,400,900,0,600,700,800,9999,300,450,600,750,500,0,3000,600,700,350,500,800,300,400,650,1000]
+const wheelvalue = [700,500,250,800,400,0,300,650,3000,700,500,800,450,0,2000,300,600,500,750,50,900,600,350,1000]
 
 let deg = 0;
 let puzzle = ""
@@ -28,7 +24,6 @@ let totalScore = 0
 let roundScore = 0
 let points = 0
 let round = 0
-
 
 //Generates a random number in the range [0 - number-1]
 function random(number) {
@@ -310,7 +305,7 @@ document.addEventListener('click',function(e) {
             setTimeout(() => {enableSpinButton()}, 5000)
             setTimeout(() => {disableAlphabet()}, 5000)
         }
-        displayScore(roundScore)
+        setTimeout(() => {displayRoundScore(roundScore)}, 5000)
      }
  })
 
