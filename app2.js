@@ -242,6 +242,7 @@ function checkPuzzle(puzzle) {
         displayTotalScore(totalScore)
         displayMessage("Congratulations!!")
         displayPictureLeft(puzzle[1]["number"])
+        displayPictureRight("red99")
         disableSpinButton()
         disableAlphabet()
     }
@@ -258,7 +259,7 @@ document.getElementById("playBtn").addEventListener("click", function() {
     displayRoundScore(roundScore)
     displayMessage("")
     displayPictureLeft("000")
-    displayPictureRight("red")
+    displayPictureRight("red0")
     createWheel()
     puzzle = getPuzzle()
     createPuzzle(puzzle)
@@ -274,6 +275,7 @@ document.getElementById("playBtn").addEventListener("click", function() {
 document.addEventListener('click',function(e) {
     if(e.target && e.target.id == 'spinBtn') {
         displayMessage("")
+        displayPictureRight(`red${random(12)}`)
 
         const wheel = document.getElementById('wheel');
         e.target.style.pointerEvents = 'auto';
