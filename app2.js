@@ -16,13 +16,14 @@ const pokemonArray = {
 // type = Object.values(pokemonArray)[randomNumber]["type"]
 // hint = Object.values(pokemonArray)[randomNumber]["hint"]
 
-// Possible Points Per Letter
-const pointArray = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 500, 600, 700, 2000, 200, -1000]
-// const pointArray = [500, -1000]
+const wheelvalue = [700,500,250,800,400,0,300,650,3000,700,500,800,450,0,2000,300,600,500,750,50,900,600,350,1000]
 
-var puzzle = ""
-var score = 0
-var points = 0
+let deg = 0;
+let puzzle = ""
+let totalScore = 0
+let roundScore = 0
+let points = 0
+let round = 0
 
 //Generates a random number in the range [0 - number-1]
 function random(number) {
@@ -32,19 +33,15 @@ function random(number) {
 // Display Message
 function displayMessage(message) {
     let messageDiv = document.getElementById("message")
-    if (message === points) {
-        setTimeout(() => {messageDiv.innerHTML = `<p>${message}</p>`}, 5000)
-    }
-    else {
-        messageDiv.innerHTML = `<p>${message}</p>`;
-    }
+    messageDiv.innerHTML = `<p>${message}</p>`;
 }
 
 //Display Picture on Left
 function displayPictureLeft(title) {
     const left = document.querySelector(".left")
     const image = "img/" + title + ".png"
-    left.innerHTML = `<img src="${image}" width="100px"></img>`
+    left.innerHTML = `<img src="${image}" width="150px"></img>`
+    left.style.transition = "all 1s ease"
 }
 
 // Clear Picture on Left
@@ -57,7 +54,7 @@ function clearPictureRight() {
 function displayPictureRight(title) {
     const right = document.querySelector(".right")
     const image = "img/" + title + ".png"
-    right.innerHTML = `<img src="${image}" width="100px"></img>`
+    right.innerHTML = `<img src="${image}" width="150px"></img>`
 }
 
 // Clear Picture on Right
@@ -97,30 +94,45 @@ function enableAlphabet() {
     }
 }
 
+// Change Play Button Text
+function changePlayButton(text) {
+    const playBtn = document.getElementById("playBtn")
+    playBtn.innerHTML = text
+}
+
+// Disable Play Button
+function disablePlayButton() {
+    const playBtn = document.getElementById("playBtn")
+    playBtn.style.backgroundColor = "gray"
+    playBtn.disabled = true
+}
+
 // Create Spin Button
 function createSpinButton() {
     const spinDiv = document.getElementById("spin")
     spinDiv.innerHTML = null
     const spinBtn = document.createElement("button")
-    spinBtn.innerHTML = "Spin"
     spinBtn.id = "spinBtn"
+    spinBtn.style.backgroundImage = "url(img/pokeball.png)"
+    spinBtn.style.backgroundSize = "88px"
     spinDiv.appendChild(spinBtn)
 }
 
 // Disable Spin Button
 function disableSpinButton() {
     const spinBtn = document.getElementById("spinBtn")
-    spinBtn.style.backgroundColor = "gray"
+    spinBtn.style.backgroundImage = "url(img/pokeballgray.png)"
+    spinBtn.style.backgroundSize = "88px"
     spinBtn.disabled = true
 }
 
 // Enable Spin Button
 function enableSpinButton() {
     const spinBtn = document.getElementById("spinBtn")
-    spinBtn.style.backgroundColor = "orange"
+    spinBtn.style.backgroundImage = "url(img/pokeball.png)"
+    spinBtn.style.backgroundSize = "88px"
     spinBtn.disabled = false
 }
-
 
 // Create Wheel
 function createWheel() {
@@ -131,9 +143,15 @@ function createWheel() {
 }
 
 // Create Total Score Counter
-function displayScore(score) {
-    const scoreboard = document.getElementById("score")
-    scoreboard.innerHTML = `${score}`
+function displayTotalScore(score) {
+    const totalScoreboard = document.getElementById("score")
+    totalScoreboard.innerHTML = `${score}`
+}
+
+// Create Round Score Counter
+function displayRoundScore(score) {
+    const roundScoreboard = document.getElementById("roundscore")
+    roundScoreboard.innerHTML = `${score}`
 }
 
 // Display Points Per Letter
@@ -143,20 +161,24 @@ function displayScore(score) {
 // }
 
 // Add Points to Score
-function addPoints(score, points) {
-    console.log("score", score, "points", points)
-    score += points
-    return score
+function addPoints(roundScore, points) {
+    roundScore += points
+    return roundScore
 }
 
 // Subtract Points from Score
-function subtractPoints(score, points) {
-    console.log("score", score, "points", points)
-    score -= points
-    return score
+function subtractPoints(roundScore, points) {
+    roundScore -= points
+    return roundScore
 }
 
-// Display Points for the Round
+// Add Round Score to Total Score
+function addTotal(totalScore, roundScore) {
+    totalScore += roundScore
+    return totalScore
+}
+
+// Display Points for the Spin
 function getPoints() {
     const randomNumber = random(16);
     const points = pointArray[randomNumber]
@@ -216,8 +238,11 @@ function checkPuzzle(puzzle) {
         }
     }
     if (check == complete) {
+        totalScore = addTotal(totalScore, roundScore)
+        displayTotalScore(totalScore)
         displayMessage("Congratulations!!")
         displayPictureLeft(puzzle[1]["number"])
+        displayPictureRight("red99")
         disableSpinButton()
         disableAlphabet()
     }
@@ -229,36 +254,38 @@ document.getElementById("playBtn").addEventListener("click", function() {
     disableAlphabet()
     createSpinButton()
     enableSpinButton()
-    // displayPoints("")
-    displayScore(score)
+    displayTotalScore(totalScore)
+    roundScore = 0
+    displayRoundScore(roundScore)
     displayMessage("")
     displayPictureLeft("000")
-    displayPictureRight("red")
+    displayPictureRight("red0")
     createWheel()
     puzzle = getPuzzle()
     createPuzzle(puzzle)
+    displayPictureLeft(`${puzzle[1]["number"]}b`)
+    round += 1
+    changePlayButton(`Start Round ${round + 1}`)
+    if (round == 10) {
+        disablePlayButton()
+    }
 })
 
 // Click the spin button
 document.addEventListener('click',function(e) {
     if(e.target && e.target.id == 'spinBtn') {
         displayMessage("")
+        displayPictureRight(`red${random(12)}`)
 
         const wheel = document.getElementById('wheel');
         e.target.style.pointerEvents = 'auto';
         deg = Math.floor(2500 + Math.random() * 2500);
-        console.log("deg", deg)
         wheel.style.transition = 'all 5s ease-out';
         wheel.style.transform = `rotate(${deg}deg)`;
         wheel.classList.add('blur');
-        console.log("actualdeg", deg % 360);
-        console.log(Math.floor((360 - (deg % 360)) / 15))
-        console.log(wheelvalue[Math.floor((360 - (deg % 360)) / 15)])
 
         wheel.addEventListener('transitionend', () => {
-            console.log("transition ended")
             wheel.classList.remove('blur');
-            // e.target.style.pointerEvents = 'none';
             wheel.style.transition = 'none';
             const absDeg = deg % 360;
             wheel.style.transform = `rotate(${absDeg}deg)`;
@@ -266,15 +293,21 @@ document.addEventListener('click',function(e) {
         
         points = wheelvalue[Math.floor((360 - (deg % 360)) / 15)]
         disableSpinButton()
-        enableAlphabet()
-        displayMessage(points)
-        if (points < 0) {
-            score = addPoints(score, points)
-            displayMessage(`${points}!!`)
-            enableSpinButton()
-            disableAlphabet()
+        setTimeout(() => {enableAlphabet()}, 5000)
+        setTimeout(() => {displayMessage(points)}, 5000)
+        // if (points < 0) {
+        //     roundScore = addPoints(roundScore, points)
+        //     displayMessage(`${points}!!`)
+        //     enableSpinButton()
+        //     disableAlphabet()
+        // }
+        if (points == 0) {
+            roundScore = 0
+            setTimeout(() => {displayMessage("Bankrupt!!")}, 5000)
+            setTimeout(() => {enableSpinButton()}, 5000)
+            setTimeout(() => {disableAlphabet()}, 5000)
         }
-        displayScore(score)
+        setTimeout(() => {displayRoundScore(roundScore)}, 5000)
      }
  })
 
@@ -286,11 +319,11 @@ document.addEventListener('click',function(e){
         const count = guessLetter(e, puzzle)
         const roundPoints = points * count
         if (count == 0) {
-            score = subtractPoints(score, 500)
+            roundScore = subtractPoints(roundScore, 500)
             displayMessage(`No ${guess} ... -500 :(`)
         }
         else {
-            score = addPoints(score, roundPoints)
+            roundScore = addPoints(roundScore, roundPoints)
             if (count == 1) {
                 displayMessage(`${guess} ... +${roundPoints} !!`)
             }
@@ -298,15 +331,10 @@ document.addEventListener('click',function(e){
                 displayMessage(`${count} ${guess}'s ... +${roundPoints} !!`)
             }
         }
-        displayScore(score)
+        displayRoundScore(roundScore)
         disableAlphabet()
         enableSpinButton()
         checkPuzzle(puzzle)
      }
  })
  
-
- const wheelvalue = [500,400,900,0,600,700,800,-1,300,450,600,750,500,0,3000,
-    600,700,350,500,800,300,400,650,1000]
-    let deg = 0;
-    
