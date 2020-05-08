@@ -223,21 +223,7 @@ function checkPuzzle(puzzle) {
     }
 }
 
-// Click the play button
-document.getElementById("playBtn").addEventListener("click", function() {
-    createAlphabet()
-    disableAlphabet()
-    createSpinButton()
-    enableSpinButton()
-    // displayPoints("")
-    displayScore(score)
-    displayMessage("")
-    displayPictureLeft("000")
-    displayPictureRight("red")
-    createWheel()
-    puzzle = getPuzzle()
-    createPuzzle(puzzle)
-})
+
 
 // Click the spin button
 document.addEventListener('click',function(e) {
@@ -309,4 +295,20 @@ document.addEventListener('click',function(e){
  const wheelvalue = [500,400,900,0,600,700,800,-1,300,450,600,750,500,0,3000,
     600,700,350,500,800,300,400,650,1000]
     let deg = 0;
-    
+
+
+//  Starts the game
+function start(){
+    createAlphabet()
+    disableAlphabet()
+    createSpinButton()
+    enableSpinButton()
+    // displayPoints("")
+    displayScore(score)
+    displayMessage("")
+    displayPictureLeft("000")
+    displayPictureRight("red")
+    createWheel()
+    puzzle = getPuzzle()
+    createPuzzle(puzzle)
+}

@@ -1,0 +1,22 @@
+{
+  "name": "wheeloffortune-master-3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "karma": "^5.0.5"
+  },
+  "devDependencies": {
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-jasmine": "^3.1.1",
+    "karma-safari-launcher": "^1.0.0",
+    "mocha": "^7.1.2"
+  },
+  "scripts": {
+    "test": "./node_modules/karma/bin/karma start karma.conf.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
