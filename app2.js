@@ -25,6 +25,21 @@ let roundScore = 0
 let points = 0
 let round = 0
 
+// Save score in LocalStorage
+function saveScore() {
+    let existingScores = JSON.parse(localStorage.getItem("allScores"));
+    if(existingScores == null) existingScores = [];
+    let name = prompt("Enter name: ");
+    let score = totalScore
+    let newScore = {
+        "name": name,
+        "score": score
+    };
+    localStorage.setItem("newScore", JSON.stringify(newScore));
+    existingScores.push(newScore);
+    localStorage.setItem("allScores", JSON.stringify(existingScores));
+}
+
 //Generates a random number in the range [0 - number-1]
 function random(number) {
     return Math.floor(Math.random()*number);
@@ -338,3 +353,8 @@ document.addEventListener('click',function(e){
      }
  })
  
+ // Click on end game button
+ document.getElementById("exitBtn").addEventListener('click',function(){
+     saveScore()
+    // window.localStorage.removeItem('allScores'); 
+ })
