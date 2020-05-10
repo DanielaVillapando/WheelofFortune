@@ -1,0 +1,16 @@
+body {
+    background-color: lightblue;
+}
+
+.play {
+    background-color: black;
+    border: yellow;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+}
+
+.grid-container {
+    grid: 150px;
+    display: inline-grid;
+}
