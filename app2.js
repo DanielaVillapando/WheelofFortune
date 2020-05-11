@@ -169,20 +169,6 @@ function createReHintButton(number) {
     alphabetDiv.appendChild(reHintBtn)
 }
 
-// Disable Re-Hint Buttons
-function disableReHintButton() {
-    const reHintBtn = document.getElementsByClassName("reHint")
-    reHintBtn.style.backgroundColor = "gray"
-    reHintBtn.disabled = true
-}
-
-// Enable Re-Hint Buttons
-function enableReHintButton() {
-    const hintBtn = document.getElementsByClassName("reHint")
-    reHintBtn.style.backgroundColor = "#ff6600"
-    reHintBtn.disabled = false
-}
-
 // Change Play Button Text
 function changePlayButton(text) {
     const playBtn = document.getElementById("playBtn")
