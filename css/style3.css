@@ -1,4 +1,13 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 body {
+    box-sizing: border-box;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 24px;
+    overflow: hidden;
     background-color: lightblue;
 }
 
