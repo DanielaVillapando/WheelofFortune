@@ -6,19 +6,27 @@
     margin: 0;
     padding: 0;
   }
+
+html {
+    background-image: url("../img/background2.png");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
   
+
 body {
     box-sizing: border-box;
     font-family: 'Permanent Marker', cursive;
     font-size: 24px;
     overflow: hidden;
-    background-color: lavender;
 }
 
 .container {
     display: grid;
-    grid-template-columns: 1fr 250px 1fr;
-    grid-template-rows: 1fr 1fr 20px 250px 20px 1fr 1fr;
+    grid-template-columns: 1fr 20vw 1fr;
+    grid-template-rows: 1fr 1fr 20px 20vw 20px 1fr 1fr;
     justify-content: center;
     width: 100vw;
     height: 100vh;
@@ -81,7 +89,6 @@ body {
     display: grid;
     align-items: center;
     justify-content: center;
-    background-color: lavender;
 }
 
 #puzzleDiv {
@@ -110,9 +117,14 @@ body {
     display: grid;
     align-content: center;
     justify-content: center;
-    background-color: lavender;
+    image-rendering: pixelated;
 }
-  
+ 
+.left-img {
+    width: 25vw;
+    max-width: 300px;
+}
+
 .right {
     grid-area: 3 / 3 / 6 / 4;
     width: 100%;
@@ -120,7 +132,12 @@ body {
     display: grid;
     align-content: center;
     justify-content: center;
-    background-color: lavender;
+    image-rendering: pixelated;
+}
+
+.right-img {
+    width: 18vw;
+    max-width: 250px;
 }
 
 .mid1 {
@@ -130,7 +147,6 @@ body {
     display: grid;
     align-content: center;
     justify-content: center;
-    background-color: lavender;
 }
 
 #pointer {
@@ -146,7 +162,6 @@ body {
     display: grid;
     align-content: center;
     justify-content: center;
-    background-color: lavender;
 }
 
 #wheelDiv {
@@ -164,7 +179,6 @@ body {
     grid-area: 5 / 2 / 6 / 3;
     width: 100%;
     height: 100%;
-    background-color: lavender; 
 }
 
 #spin {
@@ -251,7 +265,6 @@ body {
     display: grid;
     align-content: center;
     justify-content: center;
-    background-color: lavender; 
 }
 
 button:disabled {

@@ -78,8 +78,7 @@ function displayMessage(message) {
 function displayPictureLeft(title) {
     const left = document.querySelector(".left")
     const image = "img/" + title + ".png"
-    left.innerHTML = `<img src="${image}" width="150px"></img>`
-    left.style.transition = "all 1s ease"
+    left.innerHTML = `<img src="${image}" class="left-img"></img>`
 }
 
 // Clear Picture on Left
@@ -92,7 +91,7 @@ function clearPictureRight() {
 function displayPictureRight(title) {
     const right = document.querySelector(".right")
     const image = "img/" + title + ".png"
-    right.innerHTML = `<img src="${image}" width="150px"></img>`
+    right.innerHTML = `<img src="${image}" class="right-img"></img>`
 }
 
 // Clear Picture on Right
@@ -179,6 +178,7 @@ function changePlayButton(text) {
 function disablePlayButton() {
     const playBtn = document.getElementById("playBtn")
     playBtn.style.backgroundColor = "gray"
+    playBtn.innerHTML = ""
     playBtn.disabled = true
 }
 
@@ -382,6 +382,7 @@ document.addEventListener('click',function(e) {
  // Click an alphabet button
 document.addEventListener('click',function(e){
     if(e.target && e.target.id == 'abc'){
+        window.clearTimeout(delayedDisplay)
         const guess = e.target.innerHTML
         const count = guessLetter(e, puzzle)
         const roundPoints = points * count
