@@ -1,0 +1,61 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+
+html {
+    background-image: url("../img/background.png");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+body {
+    box-sizing: border-box;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 24px;
+    overflow: hidden;
+}
+
+.container {
+    display: grid;
+    grid-template-rows: auto 20%;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-content: center;
+    justify-content: center;
+}
+
+#logo {
+    grid-area: 1 / 1 / 1 / 4;
+    padding-top: 2vw;
+    justify-self: center;
+    width: 80vh;
+}
+
+#instructionsBtn {
+    grid-area: 2 / 1 / 2 / 2;
+}
+
+#startBtn {
+    grid-area: 2 / 2 / 2 / 3;
+}
+
+#creditsBtn {
+    grid-area: 2 / 3 / 2 / 4;
+}
+
+button {
+    justify-self: center;
+    align-self: center;
+    width: 25vw;
+    border-radius: 10px;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 3vw;
+    background-image: linear-gradient(to bottom right, #db9c4e, #ffe780, #fffed2);
+}
+
+button:hover {
+    background-image: linear-gradient(to bottom right, #ffd000, #ffffff);
+    box-shadow: 0 0 25px rgb(255, 251, 0)
+}
