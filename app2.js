@@ -52,7 +52,7 @@ let delayedDisplay
 function saveScore() {
     let existingScores = JSON.parse(localStorage.getItem("allScores"));
     if(existingScores == null) existingScores = [];
-    let name = prompt("Enter name: ");
+    let name = "Player";
     let score = totalScore
     let newScore = {
         "name": name,

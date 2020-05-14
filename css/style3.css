@@ -1,6 +1,14 @@
 * {
     margin: 0;
     padding: 0;
+  }
+
+html {
+    background-image: url("../img/background.png");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 body {
@@ -8,7 +16,6 @@ body {
     font-family: 'Permanent Marker', cursive;
     font-size: 24px;
     overflow: hidden;
-    background-color: lightblue;
 }
 
 .play {
@@ -19,7 +26,28 @@ body {
     font-size: 20px;
 }
 
-.grid-container {
-    grid: 150px;
-    display: inline-grid;
+.container {
+    display: grid;
+    /* grid-template-rows: 20% 1fr; */
+    justify-content: center;
+}
+
+.scoreTable {
+    background-color: lavender;
+    width: 500px;
+}
+
+table {
+    width: 500px;
+    border-collapse: collapse;
+}
+
+th, td {
+    width: 250px;
+    text-align: left;
+    border: none;
+}
+
+tr:hover {
+    background-color: gray;
 }
