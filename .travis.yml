@@ -4,8 +4,9 @@ node_js:
 before_install:
     - export DISPLAY=:99.0
 before_script:
-    - npm install
     - npm install jasmine
     - npm install karma
+    - npm install karma-jasmine
+    - npm install
 script: 
     - karma start --single-run
