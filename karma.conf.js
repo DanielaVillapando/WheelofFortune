@@ -5,7 +5,7 @@ module.exports = function(config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: 'C:/Users/Daniela/Desktop/Skool/ACIT 2911/test1/WheelofFortune-master',
+    basePath: '',
 
 
     // frameworks to use
@@ -15,12 +15,8 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'index2.html',
-      'css/*',
-      'app2.js',
-      'test/*',
-      'app3.js',
-      'index3.html'
+      '*.js',
+      'test/*.js'
     ],
 
 
@@ -34,6 +30,9 @@ module.exports = function(config) {
     preprocessors: {
     },
 
+
+    plugins: [
+    require('karma-chrome-launcher')],
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
@@ -65,7 +64,7 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false,
+    singleRun: true,
 
     // Concurrency level
     // how many browser should be started simultaneous

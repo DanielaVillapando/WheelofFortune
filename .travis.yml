@@ -7,6 +7,7 @@ before_script:
     - npm install jasmine
     - npm install karma
     - npm install karma-jasmine
+    - npm install karma-chrome-launcher
     - npm install
 services:
     - xvfb
