@@ -20,7 +20,7 @@ body {
 
 .container {
     display: grid;
-    grid-template-rows: auto 20%;
+    grid-template-rows: 80vh 20vh;
     grid-template-columns: 1fr 1fr 1fr;
     align-content: center;
     justify-content: center;
@@ -28,7 +28,6 @@ body {
 
 #logo {
     grid-area: 1 / 1 / 1 / 4;
-    padding-top: 2vw;
     justify-self: center;
     width: 80vh;
 }
@@ -48,10 +47,10 @@ body {
 button {
     justify-self: center;
     align-self: center;
-    width: 25vw;
+    width: 20vw;
     border-radius: 10px;
     font-family: 'Permanent Marker', cursive;
-    font-size: 3vw;
+    font-size: 2.5vw;
     background-image: linear-gradient(to bottom right, #db9c4e, #ffe780, #fffed2);
 }
 
