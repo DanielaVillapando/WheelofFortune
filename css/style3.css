@@ -82,7 +82,7 @@ input {
 table {
     grid-area: 2 / 1 / 2 / 4;
     justify-self: center;
-    height: 70vh;
+    height: 68vh;
     border-collapse: collapse;
     background-color: rgba(255, 255, 255, 0.5);
     border-radius: 15px;
@@ -115,6 +115,7 @@ tr:hover {
     grid-area: 3 / 1 / 4 / 4;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    height: 16vh;
 }
 
 #homeDiv {
