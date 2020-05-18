@@ -9,6 +9,7 @@ before_script:
     - npm install jasmine
     - npm install karma
     - npm install karma-jasmine
+    - npm install karma-chrome-launcher
     - npm install
 
 services:
@@ -16,6 +17,6 @@ services:
 
 addons:
     chrome: stable
-    
+
 script: 
     - karma start --single-run
