@@ -31,8 +31,7 @@ module.exports = function(config) {
     },
 
 
-    plugins: [
-    require('karma-chrome-launcher')],
+    plugins: ['karma-chrome-launcher'],
 
     // test results reporter to use
     // possible values: 'dots', 'progress'

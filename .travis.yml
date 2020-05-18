@@ -16,5 +16,6 @@ services:
 
 addons:
     chrome: stable
+    
 script: 
     - karma start --single-run
