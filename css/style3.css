@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'Permanent Marker';
+    src: url("https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap");
+    font-weight: 400;
+    font-style: cursive;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -14,7 +21,6 @@ html {
 body {
     box-sizing: border-box;
     font-family: 'Permanent Marker', cursive;
-    font-size: 24px;
     overflow: hidden;
 }
 
@@ -86,6 +92,7 @@ table {
     border-collapse: collapse;
     background-color: rgba(255, 255, 255, 0.5);
     border-radius: 15px;
+    font-size: 24px;
 }
 
 th {

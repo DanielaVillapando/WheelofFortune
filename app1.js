@@ -1,7 +1,21 @@
-function instructionsBtn() {
-    window.alert('Spin the wheel to see how many points you will gain/lose in the current round. Then, click the alphabets to solve the puzzle on each round.')
+function on1() {
+    document.getElementById("overlay1").style.display = "block";
+}
+  
+function off1() {
+    document.getElementById("overlay1").style.display = "none";
 }
 
-function creditsBtn() {
-    window.alert('Joseph Wong\nShahin Yousefi\nDaniela Villapando\nFelicia Widjaja\nWesly Wong')
+document.getElementById("instructionsBtn").addEventListener("click", on1)
+document.getElementById("overlay1").addEventListener("click", off1)
+
+function on2() {
+    document.getElementById("overlay2").style.display = "block";
 }
+  
+function off2() {
+    document.getElementById("overlay2").style.display = "none";
+}
+
+document.getElementById("creditsBtn").addEventListener("click", on2)
+document.getElementById("overlay2").addEventListener("click", off2)

@@ -41,7 +41,7 @@ const wheelvalue = [700,500,250,800,400,0,300,650,3000,700,500,800,450,0,2000,30
 let deg = 0;
 let puzzle = "";
 let hintCount = 0;
-let totalScore = 0;
+let totalScore = 2500;
 let roundScore = 0;
 let points = 0;
 let round = 0;
@@ -52,7 +52,7 @@ let delayedDisplay
 function saveScore() {
     let existingScores = JSON.parse(localStorage.getItem("allScores"));
     if(existingScores == null) existingScores = [];
-    let name = "abcdefghijklmnopqrstuvwxyz";
+    let name = "";
     let score = totalScore
     let newScore = {
         "name": name,

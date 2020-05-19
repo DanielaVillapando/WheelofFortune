@@ -165,7 +165,7 @@ document.addEventListener("click", function(e) {
 function runFunctions() {
     storedScores = retrieveScores()
     if (storedScores !== null) {
-        if (Object.values(storedScores)[storedScores.length - 1]["name"] == "abcdefghijklmnopqrstuvwxyz") {
+        if (Object.values(storedScores)[storedScores.length - 1]["name"] == "") {
             displayScore(storedScores)
             displayInput()
             document.addEventListener("submit", function(e) {
