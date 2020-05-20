@@ -5,7 +5,7 @@ module.exports = function(config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: 'C:/Users/Daniela/Desktop/Skool/ACIT 2911/test1/WheelofFortune-master',
+    basePath: '',
 
 
     // frameworks to use
@@ -15,12 +15,9 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'index2.html',
-      'css/*',
       'app2.js',
       'test/*',
-      'app3.js',
-      'index3.html'
+      'app3.js'
     ],
 
 
