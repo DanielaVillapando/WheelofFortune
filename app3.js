@@ -118,7 +118,7 @@ function createButtons() {
 
     const homeDiv = document.createElement("div")
     homeDiv.innerHTML =         
-        `<button id='homeBtn' onclick="document.location='index1.html'">
+        `<button id='homeBtn' onclick="document.location='index.html'">
         Home
         </button>`
     homeDiv.id = "homeDiv"
