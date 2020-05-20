@@ -6,19 +6,27 @@
     margin: 0;
     padding: 0;
   }
+
+html {
+    background-image: url("../img/background2.png");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
   
+
 body {
     box-sizing: border-box;
     font-family: 'Permanent Marker', cursive;
     font-size: 24px;
     overflow: hidden;
-    background-color: lavender;
 }
 
 .container {
     display: grid;
-    grid-template-columns: 1fr 250px 1fr;
-    grid-template-rows: 1fr 1fr 20px 250px 20px 1fr 1fr;
+    grid-template-columns: 1fr 20vw 1fr;
+    grid-template-rows: 1fr 1fr 20px 20vw 20px 1fr 1fr;
     justify-content: center;
     width: 100vw;
     height: 100vh;
@@ -42,6 +50,11 @@ body {
     padding: 5px;
     border-radius: 5px;
     width: 50%;
+}
+
+#playBtn:hover, #exitBtn:hover {
+    background-color: rgb(255, 249, 159);
+    box-shadow: 0 0 25px rgb(255, 255, 255);
 }
 
 #scorebox {
@@ -81,7 +94,6 @@ body {
     display: grid;
     align-items: center;
     justify-content: center;
-    background-color: lavender;
 }
 
 #puzzleDiv {
@@ -110,9 +122,14 @@ body {
     display: grid;
     align-content: center;
     justify-content: center;
-    background-color: lavender;
+    image-rendering: pixelated;
 }
-  
+ 
+.left-img {
+    width: 25vw;
+    max-width: 300px;
+}
+
 .right {
     grid-area: 3 / 3 / 6 / 4;
     width: 100%;
@@ -120,7 +137,12 @@ body {
     display: grid;
     align-content: center;
     justify-content: center;
-    background-color: lavender;
+    image-rendering: pixelated;
+}
+
+.right-img {
+    width: 18vw;
+    max-width: 250px;
 }
 
 .mid1 {
@@ -130,7 +152,6 @@ body {
     display: grid;
     align-content: center;
     justify-content: center;
-    background-color: lavender;
 }
 
 #pointer {
@@ -146,7 +167,6 @@ body {
     display: grid;
     align-content: center;
     justify-content: center;
-    background-color: lavender;
 }
 
 #wheelDiv {
@@ -164,7 +184,6 @@ body {
     grid-area: 5 / 2 / 6 / 3;
     width: 100%;
     height: 100%;
-    background-color: lavender; 
 }
 
 #spin {
@@ -195,7 +214,7 @@ body {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    background-color: rgb(255, 217, 0); 
+    background-color: #ffd900; 
 }
 
 .abc {
@@ -208,6 +227,42 @@ body {
     font-size: 20px;
 }
 
+.abc:hover {
+    background-color: yellow;
+}
+
+.abc:disabled {
+    background-color: #e2e2e2;
+}
+
+.hint {
+    width: 70px;
+    height: 30px;
+    margin: 5px;
+    border: 0px;
+    border-radius: 3px;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 20px;
+    background-color: #ff6600;
+    color: #000000;
+}
+
+.hint:hover:enabled {
+    background-color: #000000;
+    color: #ff6600;
+}
+
+.reHint {
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    border: 0px;
+    border-radius: 3px;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 20px;
+    background-color: #ff6600;
+}
+
 .bottom2 {
     grid-area: 7 / 1 / 8 / 4;
     width: 100%;
@@ -215,6 +270,8 @@ body {
     display: grid;
     align-content: center;
     justify-content: center;
-    background-color: lavender; 
 }
 
+button:disabled {
+    color: #6d6d6d;
+}

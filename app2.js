@@ -1,15 +1,35 @@
-///Array of pokemon
+// Array of pokemon
 const pokemonArray = {
-    "PIKACHU": {"number": "025", "type": "Electric", "hint": "It is the electric mouse Pokemon."},
-    "BULBASAUR": {"number": "001", "type": "Grass, Poison", "hint": "There is a seed on its back."},
-    "IVYSAUR": {"number": "002", "type": "Grass, Poison", "hint": "There is a bud on its back."},
-    "VENUSAUR": {"number": "003", "type": "Grass, Poison", "hint": "There is a large flower on its back."},
-    "CHARMANDER": {"number": "004", "type": "Fire", "hint": "There is flame on its tail."},
-    "CHARMELEON": {"number": "005", "type": "Fire", "hint": "It has sharp claws and a flame on its tail."},
-    "CHARIZARD": {"number": "006", "type": "Fire, Flying", "hint": "It flies and breathes fire."},
-    "SQUIRTLE": {"number": "007", "type": "Water", "hint": "It has a round shell and swims fast."},
-    "WARTORTLE": {"number": "008", "type": "Water", "hint": "It has a shell and a large furry tail."},
-    "BLASTOISE":{"number": "009", "type": "Water", "hint": "It shoots water from water cannons from its shell."}
+    "PIKACHU": {"number": "025", "type": "Electric", "color": "Yellow",
+        "hint": "It has a lightning bolt-shaped tail", 
+        "hint2": "PIKAPIKA + CHUCHU"},
+    "BULBASAUR": {"number": "001", "type": "Grass, Poison", "color": "Green",
+        "hint": "There is a green bulb on its back", 
+        "hint2": "BULB + DINOSAUR"},
+    "IVYSAUR": {"number": "002", "type": "Grass, Poison", "color": "Green",
+        "hint": "There is a pink bud on its back", 
+        "hint2": "IVY + DINOSAUR"},
+    "VENUSAUR": {"number": "003", "type": "Grass, Poison", "color": "Green",
+        "hint": "There is a large flower on its back", 
+        "hint2": "VENUS FLYTRAP + DINOSAUR"},
+    "CHARMANDER": {"number": "004", "type": "Fire", "color": "Orange",
+        "hint": "There is flame on its tail", 
+        "hint2": "CHAR + SALAMANDER"},
+    "CHARMELEON": {"number": "005", "type": "Fire", "color": "Red",
+        "hint": "It has sharp claws and a flame on its tail", 
+        "hint2": "CHAR + CHAMELEON"},
+    "CHARIZARD": {"number": "006", "type": "Fire, Flying", "color": "Orange",
+        "hint": "It flies and breathes fire", 
+        "hint2": "CHAR + LIZARD"},
+    "SQUIRTLE": {"number": "007", "type": "Water", "color": "Blue",
+        "hint": "It has a round shell and swims fast", 
+        "hint2": "SQUIRT + TURTLE"},
+    "WARTORTLE": {"number": "008", "type": "Water", "color": "Blue",
+        "hint": "It has a shell and a large furry tail", 
+        "hint2": "WARRIOR + TORTOISE + TURLE"},
+    "BLASTOISE":{"number": "009", "type": "Water", "color": "Blue",
+        "hint": "It shoots water from water cannons on its shell", 
+        "hint2": "BLAST + TORTOISE"}
 }
 // name = Object.keys(pokemonArray)[randomNumber]
 // number = (Object.values(pokemonArray)[randomNumber]["number"]
@@ -19,13 +39,31 @@ const pokemonArray = {
 const wheelvalue = [700,500,250,800,400,0,300,650,3000,700,500,800,450,0,2000,300,600,500,750,50,900,600,350,1000]
 
 let deg = 0;
-let puzzle = ""
-let totalScore = 0
-let roundScore = 0
-let points = 0
-let round = 0
+let puzzle = "";
+let hintCount = 0;
+let totalScore = 2500;
+let roundScore = 0;
+let points = 0;
+let round = 0;
 
-//Generates a random number in the range [0 - number-1]
+let delayedDisplay
+
+// Save score in LocalStorage
+function saveScore() {
+    let existingScores = JSON.parse(localStorage.getItem("allScores"));
+    if(existingScores == null) existingScores = [];
+    let name = "";
+    let score = totalScore
+    let newScore = {
+        "name": name,
+        "score": score
+    };
+    localStorage.setItem("newScore", JSON.stringify(newScore));
+    existingScores.push(newScore);
+    localStorage.setItem("allScores", JSON.stringify(existingScores));
+}
+
+// Generates a random number in the range [0 - number-1]
 function random(number) {
     return Math.floor(Math.random()*number);
 }
@@ -36,12 +74,11 @@ function displayMessage(message) {
     messageDiv.innerHTML = `<p>${message}</p>`;
 }
 
-//Display Picture on Left
+// Display Picture on Left
 function displayPictureLeft(title) {
     const left = document.querySelector(".left")
     const image = "img/" + title + ".png"
-    left.innerHTML = `<img src="${image}" width="150px"></img>`
-    left.style.transition = "all 1s ease"
+    left.innerHTML = `<img src="${image}" class="left-img"></img>`
 }
 
 // Clear Picture on Left
@@ -50,11 +87,11 @@ function clearPictureRight() {
     left.innerHTML = ""
 }
 
-//Display Picture on Right
+// Display Picture on Right
 function displayPictureRight(title) {
     const right = document.querySelector(".right")
     const image = "img/" + title + ".png"
-    right.innerHTML = `<img src="${image}" width="150px"></img>`
+    right.innerHTML = `<img src="${image}" class="right-img"></img>`
 }
 
 // Clear Picture on Right
@@ -76,7 +113,7 @@ function createAlphabet() {
     }
 }
 
-//Disable Alphabet
+// Disable Alphabet
 function disableAlphabet() {
     let childNodes = document.getElementById("alphabet").getElementsByTagName('*');
     for (let node of childNodes) {
@@ -84,14 +121,51 @@ function disableAlphabet() {
     }
 }
 
-//Enable Alphabet
+// Enable Alphabet
 function enableAlphabet() {
-    var childNodes = document.getElementById("alphabet").getElementsByTagName('*');
+    let childNodes = document.getElementById("alphabet").getElementsByTagName('*');
     for (var node of childNodes) {
         if (node.innerHTML !== "-") {
             node.disabled = false;
         }
     }
+}
+
+// Create Hint Button
+function createHintButton() {
+    const alphabetDiv = document.getElementById("alphabet")
+    const hintBtn = document.createElement("button")
+    hintBtn.innerHTML = "HINT"
+    hintBtn.className = "hint"
+    hintBtn.id = "hintBtn"
+    alphabetDiv.appendChild(hintBtn)
+    hintBtn.disabled = true
+}
+
+// Disable Hint Button
+function disableHintButton() {
+    const hintBtn = document.getElementById("hintBtn")
+    if (hintCount == 3) {
+        hintBtn.disabled = true
+    }
+    hintBtn.innerHTML = "HINT"
+}
+
+// Enable Hint Button
+function enableHintButton() {
+    const hintBtn = document.getElementById("hintBtn")
+    hintBtn.style.backgroundColor = "#ff6600"
+    hintBtn.disabled = false
+}
+
+// Create Re-display Hint Buttons
+function createReHintButton(number) {
+    const alphabetDiv = document.getElementById("alphabet")
+    const reHintBtn = document.createElement("button")
+    reHintBtn.innerHTML = number
+    reHintBtn.className = "reHint"
+    reHintBtn.id = `reHintBtn${number}`
+    alphabetDiv.appendChild(reHintBtn)
 }
 
 // Change Play Button Text
@@ -104,6 +178,7 @@ function changePlayButton(text) {
 function disablePlayButton() {
     const playBtn = document.getElementById("playBtn")
     playBtn.style.backgroundColor = "gray"
+    playBtn.innerHTML = ""
     playBtn.disabled = true
 }
 
@@ -153,12 +228,6 @@ function displayRoundScore(score) {
     const roundScoreboard = document.getElementById("roundscore")
     roundScoreboard.innerHTML = `${score}`
 }
-
-// Display Points Per Letter
-// function displayPoints(points) {
-//     const pointsDiv = document.getElementById("points")
-//     pointsDiv.innerHTML = `${points}`
-// }
 
 // Add Points to Score
 function addPoints(roundScore, points) {
@@ -222,7 +291,7 @@ function guessLetter(event, puzzle) {
     }
     event.target.innerHTML = "-"
     event.target.disabled = "disabled"
-    event.target.style.backgroundColor = "rgb(187, 176, 116)"
+    event.target.style.backgroundColor = "#bbb074"
     return count
 }
 
@@ -252,6 +321,8 @@ function checkPuzzle(puzzle) {
 document.getElementById("playBtn").addEventListener("click", function() {
     createAlphabet()
     disableAlphabet()
+    hintCount = 0
+    createHintButton()
     createSpinButton()
     enableSpinButton()
     displayTotalScore(totalScore)
@@ -294,13 +365,10 @@ document.addEventListener('click',function(e) {
         points = wheelvalue[Math.floor((360 - (deg % 360)) / 15)]
         disableSpinButton()
         setTimeout(() => {enableAlphabet()}, 5000)
+        // setTimeout(() => {enableHintButton()}, 5000)
+        setTimeout(() => {disableHintButton()}, 5000)
         setTimeout(() => {displayMessage(points)}, 5000)
-        // if (points < 0) {
-        //     roundScore = addPoints(roundScore, points)
-        //     displayMessage(`${points}!!`)
-        //     enableSpinButton()
-        //     disableAlphabet()
-        // }
+
         if (points == 0) {
             roundScore = 0
             setTimeout(() => {displayMessage("Bankrupt!!")}, 5000)
@@ -311,10 +379,10 @@ document.addEventListener('click',function(e) {
      }
  })
 
-
  // Click an alphabet button
 document.addEventListener('click',function(e){
     if(e.target && e.target.id == 'abc'){
+        window.clearTimeout(delayedDisplay)
         const guess = e.target.innerHTML
         const count = guessLetter(e, puzzle)
         const roundPoints = points * count
@@ -338,3 +406,69 @@ document.addEventListener('click',function(e){
      }
  })
  
+// Hover hint button
+document.addEventListener('mouseover',function(e) {
+    if(e.target && e.target.id == 'hintBtn') {
+        e.target.innerHTML = "-200"
+    }
+})
+
+document.addEventListener('mouseout',function(e) {
+    if(e.target && e.target.id == 'hintBtn') {
+        e.target.innerHTML = "HINT"
+    }
+})
+
+
+// Click on hint button
+document.addEventListener('click',function(e) {
+    if(e.target && e.target.id == 'hintBtn') {
+        window.clearTimeout(delayedDisplay)
+        if (hintCount == 0) {
+            displayMessage(`Hint: ${Object.values(puzzle)[1]["color"]}-colored, 
+            ${Object.values(puzzle)[1]["type"]}-type`)
+            createReHintButton(1)
+        }
+        else if (hintCount == 1) {
+            displayMessage(`Hint: ${Object.values(puzzle)[1]["hint"]}`)
+            createReHintButton(2)
+        }
+        else {
+            displayMessage(`Hint: ${Object.values(puzzle)[1]["hint2"]}`)
+            createReHintButton(3)
+        }
+        hintCount += 1
+        roundScore = subtractPoints(roundScore, 200)
+        displayRoundScore(roundScore)
+        delayedDisplay = setTimeout(() => {displayMessage(points)}, 5000)
+        disableHintButton()
+    }
+})
+
+//Click on reHint buttons
+document.addEventListener('click',function(e) {
+    if(e.target && e.target.className == 'reHint') {
+        window.clearTimeout(delayedDisplay)
+        if (e.target.innerHTML == 1) {
+            displayMessage(`Hint: ${Object.values(puzzle)[1]["color"]}-colored 
+            ${Object.values(puzzle)[1]["type"]}-type`)
+        }
+        else if (e.target.innerHTML == 2) {
+            window.clearTimeout(delayedDisplay)
+            displayMessage(`Hint: ${Object.values(puzzle)[1]["hint"]}`)
+        }
+        else {
+            window.clearTimeout(delayedDisplay)
+            displayMessage(`Hint: ${Object.values(puzzle)[1]["hint2"]}`)
+        }
+        delayedDisplay = window.setTimeout(() => {displayMessage(points)}, 5000)
+    }
+})
+
+ // Click on end game button
+ document.getElementById("exitBtn").addEventListener('click',function(){
+     if (totalScore !== 0) {
+        saveScore()
+     }
+    // window.localStorage.removeItem('allScores'); 
+ })
