@@ -52,8 +52,7 @@ describe('Return functions', () => {
 describe('Message', () => {
 
     beforeEach(function () {
-        var fixture = '<div id="fixture"><input id="message" type="text">' +
-            '<input id="left" type="text"></div>';
+        var fixture = '<div id="fixture"><input id="message" type="text">';
 
         document.body.insertAdjacentHTML(
             'afterbegin',
