@@ -4,19 +4,16 @@ node_js:
     
 before_install:
     - export DISPLAY=:99.0
-
 before_script:
     - npm install jasmine
     - npm install karma
     - npm install karma-jasmine
-    - npm i -D puppeteer karma-chrome-launcher
-    - npm install && npm rebuild && npm test
+    - npm install karma-chrome-launcher
+    - npm install
 
 services:
     - xvfb
-
 addons:
     chrome: stable
-
 script: 
     - karma start --single-run
