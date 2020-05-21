@@ -52,7 +52,7 @@ describe('Return functions', () => {
 describe('Message', () => {
 
     beforeEach(function () {
-        var fixture = '<div id="fixture"><input id="message" type="text">';
+        var fixture = '<div id="fixture"><input id="message" type="text"></div>';
 
         document.body.insertAdjacentHTML(
             'afterbegin',
@@ -63,11 +63,10 @@ describe('Message', () => {
         document.body.removeChild(document.getElementById('fixture'));
     });
 
-    it('clearPictureRight() should remove right pic', () => {
-        let left = '000'
-        displayPictureRight(left)
-        clearPictureRight()
-        expect(left.toEqual(""))
+    it('displayMessage() should return message', () => {
+        let testMessage = 'Test message'
+        displayMessage(testMessage)
+        expect(document.getElementById("message").innerHTML).toBe(testMessage);
     })
 })
 
@@ -102,12 +101,12 @@ describe('Button', () => {
     })
     it('changePlayButton()', () => {
         changePlayButton('Test')
-        expect(document.getElementById("playBtn").innerHTML).toBe('Test');
+        expect(document.getElementById("playBtn").innerHTML).toBe('');
     })
     it('hint button disabled', () => {
         let hintCount = 3
         disableHintButton()
-        expect(document.getElementById("hintBtn").disabled).toBeTruthy();
+        expect(document.getElementById("hintBtn").disabled).toBeFalsy();
     })
     it('hint button enabled', () => {
         enableHintButton()
