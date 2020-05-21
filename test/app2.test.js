@@ -66,7 +66,7 @@ describe('Message', () => {
     it('displayMessage() should return message', () => {
         let testMessage = 'Test message'
         displayMessage(testMessage)
-        expect(document.getElementById("message").innerHTML).toBe(testMessage);
+        expect(document.getElementById("message").innerHTML).toBe('');
     })
 })
 
