@@ -1,9 +1,18 @@
 // Karma configuration
 // Generated on Wed May 13 2020 15:36:35 GMT-0700 (Pacific Daylight Time)
 
+const process = require('process');
+process.env.CHROME_BIN = require('puppeteer').executablePath()
+
 module.exports = function(config) {
   config.set({
-
+    
+    customLaunchers: {
+      ChromeHeadless: {
+        base: 'ChromeHeadless',
+        flags: ['--disable-translate', '--disable-extensions', '--no-sandbox']
+      },
+      
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
 
@@ -27,7 +36,7 @@ module.exports = function(config) {
 
 
     // preprocess matching files before serving them to the browser
-    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
+    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor 
     preprocessors: {
     },
 
@@ -57,7 +66,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+    browsers: ['ChromeHeadless'],
 
 
     // Continuous Integration mode
@@ -66,6 +75,6 @@ module.exports = function(config) {
 
     // Concurrency level
     // how many browser should be started simultaneous
-    concurrency: Infinity
+    concurrency: Infinity 
   })
 }

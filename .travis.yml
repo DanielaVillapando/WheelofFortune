@@ -9,8 +9,8 @@ before_script:
     - npm install jasmine
     - npm install karma
     - npm install karma-jasmine
-    - npm install karma-chrome-launcher
-    - npm install
+    - npm i -D puppeteer karma-chrome-launcher
+    - npm install && npm rebuild && npm test
 
 services:
     - xvfb
