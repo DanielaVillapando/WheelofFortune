@@ -9,8 +9,8 @@ describe('Beginning values', () => {
     it('puzzle should be empty', () => {
         expect(puzzle).toBe('')
     })
-    it('total score should be 0', () => {
-        expect(totalScore).toBe(0)
+    it('total score should be 2500', () => {
+        expect(totalScore).toBe(2500)
     })
     it('round score should be 0', () => {
         expect(roundScore).toBe(0)
