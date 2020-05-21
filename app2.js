@@ -316,7 +316,7 @@ function checkPuzzle(puzzle) {
         disableAlphabet()
     }
 }
-
+window.onload=function(){
 // Click the play button
 document.getElementById("playBtn").addEventListener("click", function() {
     createAlphabet()
@@ -472,3 +472,4 @@ document.addEventListener('click',function(e) {
      }
     // window.localStorage.removeItem('allScores'); 
  })
+}   
