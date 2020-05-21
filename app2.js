@@ -29,7 +29,52 @@ const pokemonArray = {
         "hint2": "WARRIOR + TORTOISE + TURLE"},
     "BLASTOISE":{"number": "009", "type": "Water", "color": "Blue",
         "hint": "It shoots water from water cannons on its shell", 
-        "hint2": "BLAST + TORTOISE"}
+        "hint2": "BLAST + TORTOISE"},
+    "CATERPIE": {"number": "010", "type": "Bug", "color": "Green",
+        "hint": "It releases a horrible stink from its antenna",
+        "hint2": "CATERPILLAR"},
+    "METAPOD": {"number": "011", "type": "Bug", "color": "Green",
+        "hint": "Its soft body is protected by a hard outer shell",
+        "hint2": "METAMORPHOSIS + POD"},
+    "BUTTERFREE": {"number": "012", "type": "Bug, Flying", "color": "Purple",
+        "hint": "Its wings are covered with poisonous dust",
+        "hint2": "BUTTERFLY + FREE"},
+    "WEEDLE": {"number": "013", "type": "Bug, Poison", "color": "Orange",
+        "hint": "It has a sharp conical stinger on its head",
+        "hint2": "WORM + NEEDLE"},
+    "KAKUNA": {"number": "014", "type": "Bug, Poison", "color": "Yellow",
+        "hint": "It can only move a little and harden its shell",
+        "hint2": "COCOON"},
+    "BEEDRILL": {"number": "015", "type": "Bug, Poison", "color": "Yellow",
+        "hint": "It has three stingers on its forelegs and tail",
+        "hint2": "BEE + DRILL"},
+    "PIDGEY": {"number": "016", "type": "Normal, Flying", "color": "Brown",
+        "hint": "It usually hides in tall grass",
+        "hint2": "PIGEON + BUDGIE"},
+    "PIDGEOTTO": {"number": "017", "type": "Normal, Flying", "color": "Brown",
+        "hint": "It constantly flies around in search of prey",
+        "hint2": "PIGEON + DICIOTTO"},
+    "PIDGEOT": {"number": "018", "type": "Normal, Flying", "color": "Brown",
+        "hint": "It has beautiful feathers on its head",
+        "hint2": "PIGEON + JET"},
+    "RATTATA": {"number": "019", "type": "Normal", "color": "Purple",
+        "hint": "It will chew on anything with its fangs",
+        "hint2": "RAT + ATTACK"},
+    "RATICATE": {"number": "020", "type": "Normal", "color": "Brown",
+        "hint": "It fangs never stop growing",
+        "hint2": "RAT + ERADICATE"},
+    "SPEAROW": {"number": "021", "type": "Normal, Flying", "color": "Brown",
+        "hint": "It must flap its short wings quickly to fly",
+        "hint2": "SPEAR + SPARROW"},
+    "FEAROW": {"number": "022", "type": "Normal, Flying", "color": "Brown",
+        "hint": "It has a thin, long beak",
+        "hint2": "FEAR + SPARROW"},
+    "EKANS": {"number": "023", "type": "Poison", "color": "Purple",
+        "hint": "It curls up in a spiral while it rests",
+        "hint2": "SNAKE"},
+    "ARBOK": {"number": "024", "type": "Poison","color": "Purple",
+        "hint": "It has frightening patterns on its belly",
+        "hint2": "COBRA"},
 }
 // name = Object.keys(pokemonArray)[randomNumber]
 // number = (Object.values(pokemonArray)[randomNumber]["number"]
@@ -41,7 +86,7 @@ const wheelvalue = [700,500,250,800,400,0,300,650,3000,700,500,800,450,0,2000,30
 let deg = 0;
 let puzzle = "";
 let hintCount = 0;
-let totalScore = 2500;
+let totalScore = 0;
 let roundScore = 0;
 let points = 0;
 let round = 0;
@@ -256,7 +301,7 @@ function getPoints() {
 
 // Gets puzzle word from bank
 function getPuzzle() {
-    const number = random(10)
+    const number = random(25)
     const puzzle = Object.entries(pokemonArray)[number]
     return puzzle
 }
