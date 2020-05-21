@@ -1,4 +1,4 @@
-describe('Beginning value', () => {
+describe('Beginning values', () => {
 
     it('wheelvalue should appear', () => {
         expect(wheelvalue).toEqual([700, 500, 250, 800, 400, 0, 300, 650, 3000, 700, 500, 800, 450, 0, 2000, 300, 600, 500, 750, 50, 900, 600, 350, 1000])
@@ -23,7 +23,7 @@ describe('Beginning value', () => {
     })
 })
 
-describe('Return function', () => {
+describe('Return functions', () => {
 
     it('random() should return a randomized number', () => {
         expect(random()).toEqual(jasmine.any(Number))
@@ -43,20 +43,17 @@ describe('Return function', () => {
         let totalScore = 10
         expect(addTotal(totalScore, roundScore)).toBe(20)
     })
-    it('getPoints() should return a randomized number', () => {
-        let pointArray = []
-        expect(getPoints()).toEqual(jasmine.any(Number))
-    })
     it('getPuzzle() should return a random object from the word bank', () => {
         expect(getPuzzle()).toEqual(jasmine.any(Object))
     })
 })
 
 
-describe('Message', () => {
+describe('Picture and message', () => {
 
     beforeEach(function () {
-        var fixture = '<div id="fixture"></div>';
+        var fixture = '<div id="fixture"><p id="message"></p>' +
+            '<input id="left" type="text"></div>';
 
         document.body.insertAdjacentHTML(
             'afterbegin',
@@ -67,6 +64,12 @@ describe('Message', () => {
         document.body.removeChild(document.getElementById('fixture'));
     });
 
+    it('clearPictureRight() should remove right pic', () => {
+        let left = '000'
+        displayPictureRight(left)
+        clearPictureRight()
+        expect(left.toEqual(""))
+    })
     it('displayMessage() should return message', () => {
         let testMessage = 'Test message'
         displayMessage(testMessage)
@@ -105,7 +108,12 @@ describe('Button', () => {
     })
     it('changePlayButton()', () => {
         changePlayButton('Test')
-        expect(document.getElementById("playBtn").innerHTML).toBe('');
+        expect(document.getElementById("playBtn").innerHTML).toBe('Test');
+    })
+    it('hint button disabled', () => {
+        let hintCount = 3
+        disableHintButton()
+        expect(document.getElementById("hintBtn").disabled).toBeTruthy();
     })
     it('hint button enabled', () => {
         enableHintButton()
