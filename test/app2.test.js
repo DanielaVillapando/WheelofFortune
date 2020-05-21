@@ -49,10 +49,10 @@ describe('Return functions', () => {
 })
 
 
-describe('Picture and message', () => {
+describe('Message', () => {
 
     beforeEach(function () {
-        var fixture = '<div id="fixture"><p id="message"></p>' +
+        var fixture = '<div id="fixture"><input id="message" type="text">' +
             '<input id="left" type="text"></div>';
 
         document.body.insertAdjacentHTML(
@@ -69,11 +69,6 @@ describe('Picture and message', () => {
         displayPictureRight(left)
         clearPictureRight()
         expect(left.toEqual(""))
-    })
-    it('displayMessage() should return message', () => {
-        let testMessage = 'Test message'
-        displayMessage(testMessage)
-        expect(document.getElementById("message").innerHTML).toBe(testMessage);
     })
 })
 
